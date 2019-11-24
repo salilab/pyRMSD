@@ -3,6 +3,7 @@ Created on 12/03/2012
 
 @author: victor
 """
+from __future__ import print_function
 import math
 import numpy as np
 import numpy
@@ -34,7 +35,7 @@ class CondensedMatrix(object):
         # Check if the condensed matrix array has the expected number of elements.
         # Abort if not
         if validate and not self.__validate_dimensions():
-            print "[Error in CondensedDistanceMatrix::__init__]: this condensed matrix is not a square matrix."
+            print("[Error in CondensedDistanceMatrix::__init__]: this condensed matrix is not a square matrix.")
             exit(0)
 
     def __validate_dimensions(self):
