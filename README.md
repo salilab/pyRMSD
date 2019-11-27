@@ -182,9 +182,9 @@ The CondensedMatrix class also offers an efficient way to ask for the most commo
 
 ## 3 - Building & Installation
 ### Before installation
-**Users** only need to install Python version 2.6/2.7 (pyRMSD has only been tested with those, however it may work with another versions of the Python 2.X family). Numpy is also required. Surely you already have it into your machine, but, in the case you don't, it can be found [here](http://sourceforge.net/projects/numpy/files/). There you will be able to find installers for almost all the combinations of platforms and Python versions you can think about.
+**Users** only need to install Python version 2.6/2.7 or Python 3.x. Numpy is also required. Surely you already have it into your machine, but, in the case you don't, it can be found [here](http://sourceforge.net/projects/numpy/files/). There you will be able to find installers for almost all the combinations of platforms and Python versions you can think about.
 
-**Developers** may remember that header files of Python and Numpy may be accessible, and your Python installation must contain the python shared library. This usually means that you have to compile it using ./configure --enable-shared before building Python (usually 2.7 distributions already come with this library). Prody is not a dependency, but I encourage its use to handle coordinates, as it is well-tested and powerful tool.
+**Developers** may remember that header files of Python and Numpy may be accessible, and your Python installation must contain the python shared library. This usually means that you have to compile it using ./configure --enable-shared before building Python (usually 2.7 or 3.x distributions already come with this library). Prody is not a dependency, but I encourage its use to handle coordinates, as it is well-tested and powerful tool.
 
 ### Linux and MacOs
 
