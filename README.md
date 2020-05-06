@@ -23,6 +23,7 @@ pyRMSD distributed under MIT license, and it is currently on its version 4.0 .
 	- [Accessing the RMSD matrix](#accessing-the-rmsd-matrix)
 	- [Matrix statistics](#matrix-statistics)
 - [3 - Building & Installation](#3---building--installation)
+	- [Binary packages](#binary-packages)
 	- [Before installation](#before-installation)
 	- [Linux and MacOs](#linux-and-macos)
 	- [Windows](#windows)
@@ -181,6 +182,14 @@ It is possible to use ```scipy.spatial.distance.squareform``` in order to recove
 The CondensedMatrix class also offers an efficient way to ask for the most common statistical moments. Use the methods **calculateMean**, **calculateVariance**, **calculateSkewness** and **calculateKurtosis** to get mean, variance, skewness and kurtosis ( easy, isn't it :) ). You can also use **calculateMax** and **calculateMin** to get the maximum and minimum value of the matrix.
 
 ## 3 - Building & Installation
+### Binary packages
+Binary packages are available for Linux, Mac and Windows for
+[Anaconda Python](https://www.anaconda.com/products/individual):
+
+    conda install -c salilab pyrmsd
+
+Note that these packages do not currently include CUDA support.
+
 ### Before installation
 **Users** only need to install Python version 2.6/2.7 or Python 3.x. Numpy is also required. Surely you already have it into your machine, but, in the case you don't, it can be found [here](http://sourceforge.net/projects/numpy/files/). There you will be able to find installers for almost all the combinations of platforms and Python versions you can think about.
 
