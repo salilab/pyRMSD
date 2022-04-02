@@ -84,7 +84,7 @@ static PyObject* pdbreader_read(pdbreader* self, PyObject *args){
 //		delete [] self->coordinates;
 //	}
 
-	npy_intp dims[] = {self->reader->all_coordinates.size()};
+	npy_intp dims[] = {static_cast<npy_intp>(self->reader->all_coordinates.size())};
 //	self->coordinates = new double[dims[0]];
 //	double* remote_coords = &(self->reader->all_coordinates[0]);
 //	copy(remote_coords,remote_coords+dims[0],self->coordinates);

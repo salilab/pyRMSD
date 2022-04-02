@@ -155,7 +155,7 @@ void parse_params(PyObject *args, Params* params){
 }
 
 PyArrayObject* embed_rmsd_data(vector<double>& rmsd){
-	npy_intp dims[1] = {rmsd.size()};
+	npy_intp dims[1] = {static_cast<npy_intp>(rmsd.size())};
 	PyArrayObject* rmsds_list_obj = (PyArrayObject *) PyArray_SimpleNew(1, dims, NPY_DOUBLE);
 
 	double* rmsd_data = (double*) (rmsds_list_obj->data);
