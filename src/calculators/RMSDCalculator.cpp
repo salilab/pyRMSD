@@ -270,7 +270,7 @@ void RMSDCalculator::iterativeSuperposition(double rmsd_diff_to_stop, double* it
 		}
 		current_iteration++;
 	}
-	while(rmsd_difference > rmsd_diff_to_stop and current_iteration < MAX_ITERATIONS);
+	while(rmsd_difference > rmsd_diff_to_stop && current_iteration < MAX_ITERATIONS);
 
 	// One last superposition is performed, and the other rotation coordinates are moved here
 	superposition_with_external_reference(reference_coords);
