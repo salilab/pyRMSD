@@ -186,7 +186,7 @@ The CondensedMatrix class also offers an efficient way to ask for the most commo
 Binary packages are available for Linux, Mac and Windows for
 [Anaconda Python](https://www.anaconda.com/products/individual):
 
-    conda install -c salilab pyrmsd
+    conda install -c conda-forge pyrmsd
 
 Note that these packages do not currently include CUDA support.
 
