@@ -375,6 +375,7 @@ bool RMSDTools::diagonalize_symmetric(
 
 	double val;
 	double vec[4][4];
+	double tmp_eigenval[4];
 
 	double tmp_matrix[4][4];
 	RMSDTools::initializeTo(tmp_matrix[0], 0, 16);
@@ -385,26 +386,26 @@ bool RMSDTools::diagonalize_symmetric(
 		}
 	}
 
-	RMSDTools::jacobi(tmp_matrix, eigenval, vec);
+	RMSDTools::jacobi(tmp_matrix, tmp_eigenval, vec);
 
 	//Sort solutions by eigenvalue
 	int k;
 	for (int i = 0; i < 4; ++i){
 		k = i;
-		val = eigenval[i];
+		val = tmp_eigenval[i];
 
 		// Find a bigger eigenvalue
 		for (int j = i+1; j < 4; j++){
-			if (eigenval[j] > val)	{
+			if (tmp_eigenval[j] > val)	{
 				k = j;
-				val = eigenval[k];
+				val = tmp_eigenval[k];
 			}
 		}
 
 		// If there was a bigger eigenvalue...
 		if (k != i){
-			eigenval[k] = eigenval[i];
-			eigenval[i] = val;
+			tmp_eigenval[k] = tmp_eigenval[i];
+			tmp_eigenval[i] = val;
 			// Swap columns i and j
 			for (int j = 0; j < 4; ++j){
 				swap(vec[j][i],vec[j][k]);
@@ -422,6 +423,9 @@ bool RMSDTools::diagonalize_symmetric(
 		}
 	}*/
 	RMSDTools::transposeMatrix(vec,eigen_vec);
+	for (int i = 0; i < 3; ++i){
+		eigenval[i] = tmp_eigenval[i];
+	}
 
 	return (true);
 }
