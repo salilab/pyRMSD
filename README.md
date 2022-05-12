@@ -33,17 +33,17 @@ pyRMSD distributed under MIT license, and it is currently on its version 4.0 .
 		- [Modifying system variables](#modifying-system-variables)
 - [5 - Testing (Developers)](#5---testing-developers)
 - [6 - Benchmarks (Developers)](#6---benchmarks-developers)
-- [Future improvements](#future-improvements)
+- [TODO](#todo)
 - [Credits](#credits)
 
 ## 1 - Features
 ### Collective operations
 pyRMSD currently has 5 basic operations:
-    1 - Pairwise RMSD calculation
-    2 - One vs. following (of a sequence of conformers).
-    3 - One vs. all the other conformations (of a sequence of conformers).
-    4 - Pairwise RMSD matrix
-    5 - Iterative superposition of a sequence.
+1. Pairwise RMSD calculation
+2. One vs. following (of a sequence of conformers).
+3. One vs. all the other conformations (of a sequence of conformers).
+4. Pairwise RMSD matrix
+5. Iterative superposition of a sequence.
 
 All methods can use the same coordinates for fitting and RMSD calculation, or a different set of coordinates for fitting (superposing) and calculating RMSD (referred into the code as 'calculation coordinates' ).
 
@@ -75,7 +75,8 @@ If you think you need new features to be added (or better examples) click [here]
 ### Condensed matrix
 pyRMSD contains also a C written data type called CondensedMatrix. This is a representation of a squared symmetric matrix and it will save you half of the, otherwise redundant, memory. Besides, its write and read access outperforms other implementations like pure python's list-based and even Cython implementations (see the benchmarks folder). This means that it will speed up for free any application that heavily relies on accessing a distance matrix, like clustering algorithms.
 See the examples below to get more insight about how to use it.
-##2 - Usage
+
+## 2 - Usage
 Some code snippets and explanations about them will be shown below. Note that, as the code changes rapidly, this snippets can be outdated. I will put all my effort for this not to happen, but if you detect that the code examples are being more problematic than helpful for you, please [contact me](#contact_features). You will also find method and variables documentation in the code. Do not hesitate to ask for more documentation if you find is missing.
 
 ### Getting coordinates
@@ -118,7 +119,8 @@ rmsd_matrix = CondensedMatrix(rmsd)
 ```
 
 As the resulting matrix is symmetric and its diagonal is 0, the rmsd_matrix object will store only the upper diagonal triangle (condensed matrix), in the same way [scipy.spatial.distance.pdist](http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.pdist.html) does.
-###Available calculators
+
+### Available calculators
 Programatically, available calculators can be queried with:
 
 ```python
@@ -215,15 +217,20 @@ Windows Installation is discontinued. I keep some very basic instructions [here]
 pyRMSD includes a small build script that is indeed a recipe to compile the C extensions of pyRMSD. The build.py script is the most versatile way to compile pyRMSD and will work in almost all situations. With this script one can build x86 and x64 distributions with enabled or disbled CUDA calculators.
 Invoke it from pyRMSD root folder with:
 
-    > python build.py \[OPTIONS\]
+    > python build.py [OPTIONS]
 
 By default this script won't do anything. OPTIONS can be one of these:
 
 --build -> to compile pyRMSD (OpenMP version).
+
 --cuda single/double -> to compile it with single or double precission (you must specify only one). Double precission will not work in old cards even if they are CUDA capable.
+
 --clean ->  Will remove any generated .o files. --build --clean is a good combination if you are not a developer.
+
 --clean-all -> Will remove all generated files. Combine this one with any other is not a good idea. It will remove any useful built file.
+
 --build-conf -> Will determine the file (inside *build_conf* folder) storing the configuration info.
+
 --help/-h -> Will write some hints about the options.
 
 This script uses distutil's *sysconfig* package to get the search path for python headers and libs automatically.
