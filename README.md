@@ -158,7 +158,7 @@ You can access a matrix object contents like this:
 rmsd_at_pos_2_3 = rmsd_matrix[2,3]
 ```
 
-The **row_lenght** parameter will give you the... row length. Remember that the matrix is square and symmetric, so row_length == column_length, rmsd_matrix[i,j] == rmsd_matrix[j,i] and as it is a distance matrix, rmsd_matrix[i,i] == 0.
+The **row_length** parameter will give you the... row length. Remember that the matrix is square and symmetric, so row_length == column_length, rmsd_matrix[i,j] == rmsd_matrix[j,i] and as it is a distance matrix, rmsd_matrix[i,i] == 0.
 
 One can also access the inner representation of the data (a numpy array) using the `get_data( )` function. Ex.
 ```python
