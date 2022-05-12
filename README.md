@@ -126,7 +126,7 @@ Programatically, available calculators can be queried with:
 ```python
 from pyRMSD.availableCalculators import availableCalculators
 
-print availableCalculators()
+print(availableCalculators())
 ```
 
 
