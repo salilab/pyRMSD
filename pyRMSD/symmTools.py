@@ -4,6 +4,7 @@ Created on 29/07/2013
 @author: victor
 """
 from __future__ import print_function
+from itertools import permutations
 
 
 def symm_groups_validation( symm_groups):
@@ -54,6 +55,46 @@ def symm_permutations(groups):
             yield [swapped_head] + tail_permutation
     else:
         yield []
+
+def symm_permutations_new(groups):
+    """
+    Generator that produces the possible permutations of the symmetry groups.
+    Suposing we have this symmetries definition:
+        [
+            [ [1,2,0] ], 
+            [ [3,4],[5,6] ]
+        ]
+    Meaning that coordinates 1 and 2 and 3 are equivalent, and that 3 and 4, as well as 5 and 6 are equivalen and must be changed 
+    at the same time (they form a group). 
+    The possible permutations are:
+        [(1,2,0)] [(3,4) (5,6)]
+        [(1,2,0)] [(4,3) (6,5)]
+        [(2,1,0)] [(3,4) (5,6)]
+        [(2,1,0)] [(4,3) (6,5)]
+        [(1,0,2)] [(3,4) (5,6)]
+        [(1,0,2)] [(4,3) (6,5)]
+        [(2,0,1)] [(3,4) (5,6)]
+        [(2,0,1)] [(4,3) (6,5)]
+        [(0,1,2)] [(3,4) (5,6)]
+        [(0,1,2)] [(4,3) (6,5)]
+        [(0,2,1)] [(3,4) (5,6)]
+        [(0,2,1)] [(4,3) (6,5)]
+        
+    :param groups: The symmetry groups list.
+    
+    :return: yields one permutation at a time.
+    """
+    if len(groups) > 0:
+        head = groups[0]
+        for perm in permutations(range(len(head[0]))):
+            swapped_head = []
+            for item in head:
+                swapped_head.append([item[i] for i in perm])
+            for tail_permutation in symm_permutations_new(groups[1:]):
+                yield [swapped_head] + tail_permutation
+    else:
+        yield []
+
         
 def swap_atoms(coordset_reference, atom_i, atom_j):
     #print("PRIMA", coordset_reference)
