@@ -18,6 +18,22 @@ def symm_groups_validation( symm_groups):
                     raise Exception
     except Exception:
         raise ValueError('Symmetry groups are not well defined')
+        
+        
+def symm_groups_validation_new( symm_groups):
+    """
+    Checks that symmetry groups are well defined (each n-tuple has a correspondent symmetric n-tuple)
+    """
+    try:
+        for sg in symm_groups:
+            current_length = None
+            for symm_pair in sg:
+                if current_length is None:
+                    current_length = len(symm_pair)
+                if len(symm_pair) != current_length:
+                    raise Exception
+    except Exception:
+        raise ValueError('Symmetry groups are not well defined')
 
 
 
