@@ -249,6 +249,32 @@ class TestRMSDCalculators(unittest.TestCase):
                                                                              ])
         rmsds = calculator.oneVsFollowing(0)
         numpy.testing.assert_almost_equal(expected_rmsds, rmsds, 12)
+        
+        
+    def test_fitting_symmetry_new(self):
+        protein_skeleton = numpy.array([[0, 0, 0],[0, 1, 0],[0, 0, 1],[1, 0, 0],[1, 1, 1]])
+        thetas = [0, numpy.pi / 6, numpy.pi / 2, numpy.pi]
+        proteins = []
+        # axis is (1, 0, 0)
+        for i in range(4):
+            t = thetas[i]
+            rot_matrix = numpy.array([[1, 0, 0], [0, numpy.cos(t), -numpy.sin(t)], [0, numpy.sin(t), numpy.cos(t)]])
+            proteins.append((rot_matrix @ protein_skeleton.T).T + i * 3)
+        p1, p2, p3, p4 = proteins
+        coords = [numpy.stack([p1, p2, p3, p4], axis=0),
+                  numpy.stack([p1, p3, p2, p4], axis=0),
+                  numpy.stack([p3, p4, p1, p2], axis=0),
+                  numpy.stack([p2, p1, p4, p3], axis=0),
+                  numpy.stack([p4, p3, p1, p2], axis=0),
+                  numpy.stack([p4, p2, p3, p1], axis=0)]
+        expected_rmsds = [0, 0, 0, 0, 0]
+        calculator = pyRMSD.RMSDCalculator.RMSDCalculator("QTRFIT_SERIAL_CALCULATOR", 
+                                                          fittingCoordsets=numpy.array(coords),
+                                                          fitSymmetryGroups=[
+                                                                                [[0,5,10,15], [1,6,11,16], [2,7,12,17], [3,8,13,18], [4,9,14,19]],
+                                                                             ])
+        rmsds = calculator.oneVsFollowing(0)
+        numpy.testing.assert_allclose(expected_rmsds, rmsds, rtol=1e-7)
     
     def test_calc_symmetry(self):
         
