@@ -138,7 +138,7 @@ void RMSDCalculator::calculate_rmsd_condensed_matrix_with_fitting_and_calculatio
 	
 	this->kernelFunctions->matrixInit(rmsdData);
 
-	for(int reference_index = 0; reference_index<this->rmsdData->numberOfConformations; ++reference_index){
+	for(int reference_index = 0; reference_index < this->rmsdData->numberOfConformations - 1; ++reference_index){
 		int offset = reference_index*(this->rmsdData->numberOfConformations-1)- (((reference_index-1)*reference_index)/2) ;
 		double* fit_reference_conformation = this->rmsdData->getFittingConformationAt(reference_index);
 		double* calc_reference_conformation = this->rmsdData->getCalculationConformationAt(reference_index);
