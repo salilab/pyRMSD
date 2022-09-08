@@ -20,9 +20,9 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip install numpy
+        pip install numpy pytest
     - name: Test
       run: |
         python setup.py build_ext --inplace -t build
         cd pyRMSD/test
-        PYTHONPATH=../.. python testRMSDCalculators.py
+        PYTHONPATH=../.. pytest testRMSDCalculators.py testSymmTools.py
