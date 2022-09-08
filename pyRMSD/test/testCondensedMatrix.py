@@ -3,6 +3,7 @@ Created on 30/01/2012
 
 @author: victor
 """
+from __future__ import division
 import unittest
 import random
 from pyRMSD.condensedMatrix import CondensedMatrix
@@ -12,7 +13,7 @@ class TestCondensedMatrix(unittest.TestCase):
 
     def test_list_creation(self):
         MAX_ELEMENTS = 30
-        DATA_LEN = (MAX_ELEMENTS * (MAX_ELEMENTS-1))/2
+        DATA_LEN = (MAX_ELEMENTS * (MAX_ELEMENTS-1)) // 2
         numpy_matrix_data = numpy.abs(numpy.random.rand(DATA_LEN))
         np_matrix = CondensedMatrix(numpy_matrix_data)
         ls_matrix = CondensedMatrix(list(numpy_matrix_data))
