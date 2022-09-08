@@ -261,12 +261,12 @@ class TestRMSDCalculators(unittest.TestCase):
             rot_matrix = numpy.array([[1, 0, 0], [0, numpy.cos(t), -numpy.sin(t)], [0, numpy.sin(t), numpy.cos(t)]])
             proteins.append((rot_matrix @ protein_skeleton.T).T + i * 3)
         p1, p2, p3, p4 = proteins
-        coords = [numpy.stack([p1, p2, p3, p4], axis=0),
-                  numpy.stack([p1, p3, p2, p4], axis=0),
-                  numpy.stack([p3, p4, p1, p2], axis=0),
-                  numpy.stack([p2, p1, p4, p3], axis=0),
-                  numpy.stack([p4, p3, p1, p2], axis=0),
-                  numpy.stack([p4, p2, p3, p1], axis=0)]
+        coords = [numpy.concatenate([p1, p2, p3, p4], axis=0),
+                  numpy.concatenate([p1, p3, p2, p4], axis=0),
+                  numpy.concatenate([p3, p4, p1, p2], axis=0),
+                  numpy.concatenate([p2, p1, p4, p3], axis=0),
+                  numpy.concatenate([p4, p3, p1, p2], axis=0),
+                  numpy.concatenate([p4, p2, p3, p1], axis=0)]
         expected_rmsds = [0, 0, 0, 0, 0]
         calculator = pyRMSD.RMSDCalculator.RMSDCalculator("QTRFIT_SERIAL_CALCULATOR", 
                                                           fittingCoordsets=numpy.array(coords),
