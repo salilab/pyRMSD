@@ -60,7 +60,7 @@ class TestCondensedMatrix(unittest.TestCase):
                                                                                         # of doubles     
          
         ## And we can build a condensed matrix as a complete matrix
-        self.assertItemsEqual(condensed_matrix_1.get_data(), condensed_matrix_2.get_data())
+        numpy.testing.assert_almost_equal(condensed_matrix_1.get_data(), condensed_matrix_2.get_data())
     
         
 if __name__ == "__main__":
