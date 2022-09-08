@@ -27,7 +27,7 @@ class TestCondensedMatrix(unittest.TestCase):
         random.seed()
         for i in range(20): #@UnusedVariable
             rows = random.randint(1,1000)
-            number_of_elements =  (rows *(rows-1)) / 2
+            number_of_elements =  (rows *(rows-1)) // 2
             matrix = CondensedMatrix(numpy.array(range(number_of_elements))*1.)
             self.assertEqual(rows,matrix.get_number_of_rows())
             self.assertEqual(rows,matrix.row_length)
