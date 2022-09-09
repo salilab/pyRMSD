@@ -3,7 +3,7 @@ import numpy
 import pyRMSD.calculators
 from pyRMSD.availableCalculators import availableCalculators
 from pyRMSD.symmTools import symm_permutations, swap_atoms, min_rmsd_of_rmsds_list,\
-    symm_groups_validation
+    symm_groups_validation, symm_permutations_new, symm_groups_validation_new
 
 class RMSDCalculator(object):
     """
@@ -71,7 +71,7 @@ class RMSDCalculator(object):
             self.__number_of_threads = 8
 
             # Symmetry group handling
-            symm_groups_validation(fitSymmetryGroups)
+            symm_groups_validation_new(fitSymmetryGroups)
             symm_groups_validation(calcSymmetryGroups)
             self.fit_symmetry_groups = fitSymmetryGroups
             self.calc_symmetry_groups = calcSymmetryGroups
@@ -206,23 +206,18 @@ class RMSDCalculator(object):
             # If we have fitting symmetry groups, we have to try with all possible combinations.
             # Calculation symmetry groups are applied at C level, changing the way RMSD is calculated.
             symm_rmsds = []
-            for permutation in symm_permutations(self.fit_symmetry_groups):
-                
+            original = [numpy.array(i).flatten() for i in self.fit_symmetry_groups]
+            for permutation in symm_permutations_new(self.fit_symmetry_groups):
                 # Copy the coordinates and convert to matrix form for ease of indexing
                 coords_copy = numpy.array(np_coords_fit, copy= True, dtype = numpy.float64)
                 coords_copy.shape = (self.number_of_conformations, self.number_of_fitting_atoms,3)
-                
-                # Apply the changes to reference
+                ind = 0
                 for symm_group in permutation:
-                    # Do it only if the symm. group is not permuted. Otherwise we would always permute!
-                    if not symm_group in self.fit_symmetry_groups:
-                        for symm_pair in symm_group:
-                            swap_atoms(coords_copy[conformation_number], symm_pair[0], symm_pair[1])
-                    
-                # Flatten again to feed the C calculator
+                    new_indexes = numpy.array(symm_group).flatten()
+                    coords_copy[conformation_number][original[ind], :] = coords_copy[conformation_number][new_indexes, :]
+                    ind += 1
                 coords_copy.shape = (self.number_of_conformations*self.number_of_fitting_atoms*3)
                 
-                # And calculate the RMSD of this permutation
                 symm_rmsds.append(pyRMSD.calculators.oneVsFollowing(availableCalculators()[self.calculator_type],
                                                          coords_copy,
                                                          self.number_of_fitting_atoms,
