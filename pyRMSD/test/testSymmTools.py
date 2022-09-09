@@ -89,14 +89,14 @@ class Test(unittest.TestCase):
         for i, perm in enumerate(symm_permutations_new(groups)):
             all_perms.append(perm)
             
-        all_perms = sorted(all_perm)
+        all_perms = sorted(all_perms)
         expected_permutations = sorted(expected_permutations)
         self.assertListEqual(all_perms, expected_permutations)
         
         # test for empty permutation set
         groups = []
         all_perms = [i for i in symm_permutations_new(groups)]
-        self.assertEqual(len(all_perms), 0)
+        self.assertEqual(len(all_perms), 1)
         self.assertEqual(len(all_perms[0]), 0)
             
     def test_swap_atoms(self):
