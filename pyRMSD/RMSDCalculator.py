@@ -208,7 +208,7 @@ class RMSDCalculator(object):
             symm_rmsds = []
             original = [numpy.array(i).flatten() for i in self.fit_symmetry_groups]
             for permutation in symm_permutations_new(self.fit_symmetry_groups):
-                
+                # Copy the coordinates and convert to matrix form for ease of indexing
                 coords_copy = numpy.array(np_coords_fit, copy= True, dtype = numpy.float64)
                 coords_copy.shape = (self.number_of_conformations, self.number_of_fitting_atoms,3)
                 ind = 0

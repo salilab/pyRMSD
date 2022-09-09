@@ -252,6 +252,9 @@ class TestRMSDCalculators(unittest.TestCase):
         
         
     def test_fitting_symmetry_new(self):
+        """
+        Runs the RMSD Calculation with fitting symmetry groups with more than 2 elements per symm group
+        """
         protein_skeleton = numpy.array([[0, 0, 0],[0, 1, 0],[0, 0, 1],[1, 0, 0],[1, 1, 1]])
         thetas = [0, numpy.pi / 6, numpy.pi / 2, numpy.pi]
         proteins = []
@@ -259,7 +262,7 @@ class TestRMSDCalculators(unittest.TestCase):
         for i in range(4):
             t = thetas[i]
             rot_matrix = numpy.array([[1, 0, 0], [0, numpy.cos(t), -numpy.sin(t)], [0, numpy.sin(t), numpy.cos(t)]])
-            proteins.append((rot_matrix @ protein_skeleton.T).T + i * 3)
+            proteins.append(numpy.matmul(rot_matrix, protein_skeleton.T).T + i * 3)
         p1, p2, p3, p4 = proteins
         coords = [numpy.concatenate([p1, p2, p3, p4], axis=0),
                   numpy.concatenate([p1, p3, p2, p4], axis=0),

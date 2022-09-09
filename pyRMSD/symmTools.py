@@ -22,18 +22,16 @@ def symm_groups_validation( symm_groups):
         
 def symm_groups_validation_new( symm_groups):
     """
-    Checks that symmetry groups are well defined (each n-tuple has a correspondent symmetric n-tuple)
+    Checks that symmetry groups are well defined (each n-tuple has a correspondent symmetric n-tuple).
+    Allows Multi-Unit symmgroups, i.e. with > 2 elements
     """
-    try:
-        for sg in symm_groups:
-            current_length = None
-            for symm_pair in sg:
-                if current_length is None:
-                    current_length = len(symm_pair)
-                if len(symm_pair) != current_length:
-                    raise Exception
-    except Exception:
-        raise ValueError('Symmetry groups are not well defined')
+    for sg in symm_groups:
+        current_length = None
+        for symm_pair in sg:
+            if current_length is None:
+                current_length = len(symm_pair)
+            if len(symm_pair) != current_length:
+                raise ValueError('Symmetry groups are not well defined')
 
 
 
@@ -80,7 +78,7 @@ def symm_permutations_new(groups):
             [ [1,2,0] ], 
             [ [3,4],[5,6] ]
         ]
-    Meaning that coordinates 1 and 2 and 3 are equivalent, and that 3 and 4, as well as 5 and 6 are equivalen and must be changed 
+    Meaning that coordinates 0 and 1 and 2 are equivalent, and that 3 and 4, as well as 5 and 6 are equivalent and must be changed 
     at the same time (they form a group). 
     The possible permutations are:
         [(1,2,0)] [(3,4) (5,6)]

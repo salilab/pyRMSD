@@ -42,10 +42,7 @@ class Test(unittest.TestCase):
         # Old validation check fails
         self.assertRaises(ValueError, symm_groups_validation, [symm_group_3])
         # New validation check passes
-        try:
-            symm_groups_validation_new([symm_group_3])
-        except ValueError:
-            self.fail("Value exception has been raised.")
+        symm_groups_validation_new([symm_group_3])
 
     def test_symm_group_permutations(self):
         groups = [
@@ -65,6 +62,9 @@ class Test(unittest.TestCase):
             self.assertSequenceEqual(expected_permutations[i], perm)
             
     def test_symm_group_permutations_new(self):
+        """
+        Tests the generation of permutations for symm-groups containing more than 2 elements per group
+        """
         groups = [
                   [ [1,2] ],
                   [ [3,4,5],[6,7,8] ]
@@ -92,6 +92,12 @@ class Test(unittest.TestCase):
         all_perms = sorted(all_perm)
         expected_permutations = sorted(expected_permutations)
         self.assertListEqual(all_perms, expected_permutations)
+        
+        # test for empty permutation set
+        groups = []
+        all_perms = [i for i in symm_permutations_new(groups)]
+        self.assertEqual(len(all_perms), 0)
+        self.assertEqual(len(all_perms[0]), 0)
             
     def test_swap_atoms(self):
         coordsets = numpy.array([[1,2,3],[4,5,6],[7,8,9],[10,11,12]])
