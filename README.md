@@ -190,6 +190,12 @@ Binary packages are available for Linux, Mac and Windows for
 
     conda install -c conda-forge pyrmsd
 
+RPM packages are available for Fedora and RedHat Enterprise Linux via
+[Fedora COPR](https://copr.fedorainfracloud.org/coprs/):
+
+    sudo dnf copr enable salilab/salilab
+    sudo dnf install python3-pyrmsd
+
 Note that these packages do not currently include CUDA support.
 
 ### Before installation
