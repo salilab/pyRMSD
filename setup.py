@@ -3,9 +3,12 @@ Created on 25/02/2013
 
 @author: victor
 """
-from distutils.core import setup, Extension
+
+try:
+    from setuptools import setup, Extension
+except ImportError:
+    from distutils.core import setup, Extension
 import numpy
-import distutils.sysconfig
 import os
 
 def read(fname):
@@ -34,8 +37,7 @@ setup(
                   'pyRMSD.symmTools'
                   ],
       include_dirs = [
-                      numpy.get_include(),
-                      distutils.sysconfig.get_python_inc()
+                      numpy.get_include()
                       ],
       ext_modules = [
                    Extension('pyRMSD.pdbReader',[
