@@ -1,6 +1,6 @@
 Name:           python3-pyrmsd
 Version:        4.3.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Way of performing RMSD calculations of large sets of structures
 Group:          Development/Languages
 License:        MIT 
@@ -39,6 +39,9 @@ cd pyRMSD/test
 %defattr(-,root,root,-)
 
 %changelog
+* Tue Aug 01 2023 Ben Webb <ben@salilab.org>  4.3.2-2
+- Set correct name
+
 * Tue Aug 01 2023 Ben Webb <ben@salilab.org>  4.3.2-1
 - Update to latest version, drop Python 2
 
