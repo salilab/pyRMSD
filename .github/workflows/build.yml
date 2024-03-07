@@ -20,7 +20,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip install numpy pytest
+        pip install numpy pytest setuptools
     - name: Test
       run: |
         python setup.py build_ext --inplace -t build
