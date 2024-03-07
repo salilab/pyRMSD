@@ -1,0 +1,22 @@
+Source: python-pyrmsd
+Priority: optional
+Maintainer: Ben Webb <ben@salilab.org>
+Build-Depends: debhelper-compat (= 13), dh-python, python3-dev, python3-setuptools, python3-numpy
+Standards-Version: 4.6.2
+Section: libs
+Homepage: https://github.com/salilab/pyRMSD
+Vcs-Browser: https://github.com/salilab/pyRMSD
+
+Package: python3-pyrmsd
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Way of performing RMSD calculations of large sets of structures
+  pyRMSD goal is the fast (and easy!) calculation of rmsd collective
+  operations, specially matrices of large ensembles of protein
+  conformations. It also offers a symmetric distance matrix implementation
+  with improved access speed and memory efficiency.
+  .
+  If you like it and you are using it for your scientific projects, please
+  cite the pyRMSD paper:
+  http://bioinformatics.oxfordjournals.org/content/29/18/2363

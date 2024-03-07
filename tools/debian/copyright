@@ -1,0 +1,6 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: python-ihm
+Source: https://github.com/salilab/pyRMSD
+
+Copyright: 2012 Víctor Alejandro Gil Sepúlveda
+License: MIT
