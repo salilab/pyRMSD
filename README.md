@@ -196,6 +196,13 @@ RPM packages are available for Fedora and RedHat Enterprise Linux via
     sudo dnf copr enable salilab/salilab
     sudo dnf install python3-pyrmsd
 
+`.deb` packages are available for Ubuntu LTS via
+[PPA](https://launchpad.net/~salilab/+archive/ubuntu/ppa):
+
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:salilab/ppa
+    sudo apt install python3-pyrmsd
+
 Note that these packages do not currently include CUDA support.
 
 ### Before installation
