@@ -3,3 +3,9 @@
 export PYBUILD_NAME=pyrmsd
 %:
 	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_test:
+
+execute_after_dh_install:
+	# Test the installation
+	cd pyRMSD/test && env PYTHONPATH=`echo ../../debian/*/usr/lib/python3.*/dist-packages/` python3 testRMSDCalculators.py -v
