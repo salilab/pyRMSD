@@ -1,0 +1,22 @@
+diff --git a/src/matrix/Matrix.cpp b/src/matrix/Matrix.cpp
+index c23e3e4..aca854f 100644
+--- a/src/matrix/Matrix.cpp
++++ b/src/matrix/Matrix.cpp
+@@ -244,7 +244,7 @@ int condensedMatrix_ass_subscript(CondensedMatrix *self, PyObject *key, PyObject
+ 		// NPY_ARRAY_ENSURECOPY
+ 		// NPY_ARRAY_ENSUREARRAY
+ 		if(self->numpy_array != NULL){
+-			((double*) PyArray_GETPTR1(self->numpy_array,0))[pos] =self->data[pos];
++			((double*) PyArray_GETPTR1((PyArrayObject*)self->numpy_array,0))[pos] =self->data[pos];
+ 		}
+ 	}
+ 	else{
+@@ -255,7 +255,7 @@ int condensedMatrix_ass_subscript(CondensedMatrix *self, PyObject *key, PyObject
+ 			// BEWARE!!!!!! SLOW AND REDUNDANT HACK
+ 			/////////////////////////////////////////
+ 			if(self->numpy_array != NULL){
+-				((double*) PyArray_GETPTR1(self->numpy_array,0))[pos] =self->data[pos];
++				((double*) PyArray_GETPTR1((PyArrayObject*)self->numpy_array,0))[pos] =self->data[pos];
+ 			}
+ 		}
+ 	}

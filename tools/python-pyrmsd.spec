@@ -7,6 +7,7 @@ License:        MIT
 URL:            https://github.com/salilab/pyRMSD
 Source0:        pyRMSD-%{version}.zip
 Patch1:         pyrmsd-setuptools.patch
+Patch2:         pyrmsd-numpy2.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  python3-devel, python3-setuptools, python3-numpy, gcc-c++
 
