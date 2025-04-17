@@ -24,7 +24,7 @@ paper <http://bioinformatics.oxfordjournals.org/content/29/18/2363>`_.
 %prep
 %setup -q -n pyRMSD-%{version}
 %patch -P 1 -p1
-%patch -P 1 -p2
+%patch -P 2 -p1
 
 %build
 %{__python3} setup.py build
