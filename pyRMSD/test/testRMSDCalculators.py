@@ -277,7 +277,7 @@ class TestRMSDCalculators(unittest.TestCase):
                                                                                 [[0,5,10,15], [1,6,11,16], [2,7,12,17], [3,8,13,18], [4,9,14,19]],
                                                                              ])
         rmsds = calculator.oneVsFollowing(0)
-        numpy.testing.assert_allclose(expected_rmsds, rmsds, rtol=1e-7)
+        numpy.testing.assert_allclose(expected_rmsds, rmsds, 0, atol=1e-7)
     
     def test_calc_symmetry(self):
         
