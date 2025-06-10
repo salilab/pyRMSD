@@ -1,6 +1,6 @@
 Name:           python3-pyrmsd
 Version:        4.3.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Way of performing RMSD calculations of large sets of structures
 Group:          Development/Languages
 License:        MIT 
@@ -8,6 +8,7 @@ URL:            https://github.com/salilab/pyRMSD
 Source0:        pyRMSD-%{version}.zip
 Patch1:         pyrmsd-setuptools.patch
 Patch2:         pyrmsd-numpy2.patch
+Patch3:         pyrmsd-test-tolerance.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  python3-devel, python3-setuptools, python3-numpy, gcc-c++
 
@@ -25,6 +26,7 @@ paper <http://bioinformatics.oxfordjournals.org/content/29/18/2363>`_.
 %setup -q -n pyRMSD-%{version}
 %patch -P 1 -p1
 %patch -P 2 -p1
+%patch -P 3 -p1
 
 %build
 %{__python3} setup.py build
