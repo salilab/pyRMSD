@@ -229,9 +229,9 @@ def availableCalculators():
             # Clear the products file itself
             os.system("rm .products")
         # Remove all trackers
-        os.system("find src/ -name '.modif*' -exec rm {} \;")
+        os.system(r"find src/ -name '.modif*' -exec rm {} \;")
         # remove .pyc
-        os.system("find src/ -name '*.pyc' -exec rm {} \;")
+        os.system(r"find src/ -name '*.pyc' -exec rm {} \;")
     ######################################
 
     #########################################
