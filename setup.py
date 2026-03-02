@@ -17,7 +17,7 @@ def read(fname):
 
 setup(
       name = 'pyRMSD',
-      version = '4.3.2',
+      version = '4.3.3',
       description = 'pyRMSD is a small Python package that aims to offer an integrative and \
       efficient way of performing RMSD calculations of large sets of structures. It is specially \
       tuned to do fast collective RMSD calculations, as pairwise RMSD matrices.',
