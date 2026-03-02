@@ -46,7 +46,9 @@ void load_and_merge(std::vector<double>& here, std::vector<int>& resulting_size,
 
 template <class T>
 inline std::string toString(T data){
-	return static_cast<std::ostringstream*>( &(std::ostringstream() << data) )->str();
+        std::ostringstream tmp;
+        tmp << data;
+        return tmp.str();
 }
 
 template <class T>
