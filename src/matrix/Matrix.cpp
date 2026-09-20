@@ -60,7 +60,12 @@ static void condensedMatrix_dealloc(CondensedMatrix* self){
  */
 static PyObject* condensedMatrix_new(PyTypeObject *type, PyObject *args, PyObject *kwds){
 	CondensedMatrix* self;
-	self = (CondensedMatrix*) type->tp_alloc(type, 0);
+#ifdef Py_LIMITED_API
+	allocfunc alloc = (allocfunc)PyType_GetSlot(type, Py_tp_alloc);
+#else
+	allocfunc alloc = type->tp_alloc;
+#endif
+	self = (CondensedMatrix*) alloc(type, 0);
     if (self != NULL) {
     	self->row_length = 0;
     	self->data_size = 0;

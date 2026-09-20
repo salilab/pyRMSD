@@ -22,7 +22,12 @@ static PyMemberDef pdbreader_members[] = {
 };
 
 static PyObject* pdbreader_new(PyTypeObject *type, PyObject *args, PyObject *kwds){
-	pdbreader* self = (pdbreader*) type->tp_alloc(type, 0);
+#ifdef Py_LIMITED_API
+	allocfunc alloc = (allocfunc)PyType_GetSlot(type, Py_tp_alloc);
+#else
+	allocfunc alloc = type->tp_alloc;
+#endif
+	pdbreader* self = (pdbreader*) alloc(type, 0);
 	if(self != NULL){
 		self->reader = new PDBReader;
 //		self->coordinates = NULL;
